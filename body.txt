@@ -1,0 +1,887 @@
+<body class="">
+<script>
+    const csrfToken = $('meta[name="csrf-token"]').attr('content')
+    widgets.init('/proxy_graphql', 'https://ide.bitquery.io/api/querytransfer', csrfToken, {
+        locale: 'en',
+        theme: 'light'
+    });
+    graphs.init('/proxy_graphql', 'https://ide.bitquery.io/api/querytransfer', csrfToken);
+
+const componentProperties = {
+  bitqueryAPI: window.bitqueryAPI = 'https://ide.bitquery.io/api'
+};
+
+
+</script>
+<header class="header border-bottom mb-2">
+<nav class="navbar navbar-expand-lg navbar-light">
+<a href="/"><img class="d-inline-block align-top logotype" src="https://bitquery.io/wp-content/uploads/2020/09/bitquery_logo_w.png"/>
+</a>
+<!--    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--      <span class="navbar-toggler-icon"></span>-->
+<!--    </button>-->
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+<div class="navbar-nav navbar-nav-search">
+<form accept-charset="UTF-8" action="/search" class="search-form" method="post"><input name="authenticity_token" type="hidden" value="tg5MNw6rMQzjiADESG9A9EhI5inlUSNwEptl/zlvU1ikekARKeZsHTa783sjwJVTINramoEiwAqcmMi6LdfFtw=="/>
+<div class="input-group">
+<input class="form-control form-control-sm" name="query" placeholder="Enter blockchain address..." type="text"/>
+<div class="input-group-append">
+<button class="btn btn-primary btn-sm search-form-type d-none d-lg-inline-block" data-network="bsc" type="button">Binance Smart Chain Mainnet</button>
+<button class="btn btn-primary btn-sm search-form-type d-lg-none" data-network="bsc" type="button"><img alt="Binance Smart Chain Mainnet" class="search-icon" src="/packs/media/icon/bnb-9db5aa6c.svg" style="width: 32px; height: auto"/><i class="fa fa-search search-icon"></i></button>
+<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" type="button"></button>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item search-form-type" data-network="">Search in all blockchains</a>
+<a class="dropdown-item search-form-type" data-network="bitcoin">Bitcoin Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="litecoin">Litecoin</a>
+<a class="dropdown-item search-form-type" data-network="dogecoin">Dogecoin</a>
+<a class="dropdown-item search-form-type" data-network="dash">Dash</a>
+<a class="dropdown-item search-form-type" data-network="ethereum">Ethereum Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="ethclassic">Ethereum Classic</a>
+<a class="dropdown-item search-form-type" data-network="ethclassic_reorg">Ethereum Classic no reorg</a>
+<a class="dropdown-item search-form-type" data-network="ethpow">Ethereum PoW</a>
+<a class="dropdown-item search-form-type" data-network="zcash">ZCash</a>
+<a class="dropdown-item search-form-type" data-network="bitcash">Bitcoin Cash</a>
+<a class="dropdown-item search-form-type" data-network="bitcoinsv">Bitcoin SV</a>
+<a class="dropdown-item search-form-type" data-network="cardano">Cardano</a>
+<a class="dropdown-item search-form-type" data-network="algorand">Algorand Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="algorand_testnet">Algorand Testnet</a>
+<a class="dropdown-item search-form-type" data-network="algorand_betanet">Algorand Betanet</a>
+<a class="dropdown-item search-form-type" data-network="binance">Binance DEX</a>
+<a class="dropdown-item search-form-type" data-network="celo_alfajores">Celo Alfajores Testnet</a>
+<a class="dropdown-item search-form-type" data-network="bsc_testnet">Binance Smart Chain Testnet</a>
+<a class="dropdown-item search-form-type" data-network="goerli">Goerli Ethereum Testnet</a>
+<a class="dropdown-item search-form-type" data-network="celo_baklava">Celo Baklava Testnet</a>
+<a class="dropdown-item search-form-type" data-network="celo_mainnet">Celo Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="conflux_hydra">Conflux Hydra</a>
+<a class="dropdown-item search-form-type" data-network="conflux_oceanus">Conflux Oceanus</a>
+<a class="dropdown-item search-form-type" data-network="diem_testnet">Diem Testnet</a>
+<a class="dropdown-item search-form-type" data-network="libra_testnet">Libra Testnet</a>
+<a class="dropdown-item search-form-type" data-network="hedera">Hedera Hashgraph Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="eos">EOS Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="tron">TRON Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="solana">Solana Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="medalla">Medalla Eth 2.0 Testnet</a>
+<a class="dropdown-item search-form-type" data-network="eth2">Beacon Chain Ethereum 2.0</a>
+<a class="dropdown-item search-form-type" data-network="filecoin">Filecoin Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="matic">Matic (Polygon) Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="velas">Velas Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="velas_testnet">Velas Testnet</a>
+<a class="dropdown-item search-form-type" data-network="klaytn">Klaytn Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="elrond">The MultiversX (Elrond) Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="avalanche">Avalanche  C-chain</a>
+<a class="dropdown-item search-form-type" data-network="fantom">Fantom Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="moonbeam">Moonbeam Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="cronos">Cronos Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="cosmoshub">Cosmos Hub Network</a>
+<a class="dropdown-item search-form-type" data-network="crypto_mainnet">Crypto.org Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="crypto_testnet">Crypto.org Croeseid Testnet</a>
+<a class="dropdown-item search-form-type" data-network="heimdall">Heimdall (Matic Verification Network)</a>
+<a class="dropdown-item search-form-type" data-network="terra">Terra</a>
+<a class="dropdown-item search-form-type" data-network="flow">Flow Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="stellar">Stellar Ledger</a>
+<a class="dropdown-item search-form-type" data-network="ripple">Ripple XRP Ledger</a>
+<a class="dropdown-item search-form-type" data-network="tezos">Tezos</a>
+<a class="dropdown-item search-form-type" data-network="everscale">Everscale</a>
+</div>
+</div>
+</div>
+</form><script>
+    search('.search-form');
+</script>
+</div>
+</div>
+<div id="wallet-connection-wrapper">
+<svg visibility="hidden" xmlns="http://www.w3.org/2000/svg">
+<symbol id="metamask" viewbox="0 0 60 60">
+<circle cx="30" cy="30" fill="#FFD3A2" r="30"></circle>
+<path clip-rule="evenodd" d="M36.8438 41.6544L32.6461 42.7811V41.2994L32.3115 40.9599H29.9085V42.6885V43.9077H32.4788L35.6422 42.5187L36.8438 41.6544Z" fill="#CDBDB2" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M23.156 41.6544L27.2624 42.7811V41.2994L27.6122 40.9599H30V42.6885V43.9077H27.4297L24.2662 42.5187L23.156 41.6544Z" fill="#CDBDB2" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M32.3119 38.4437L32.6465 41.299L32.2206 40.9594H27.7796L27.2625 41.299L27.6123 38.4437L28.2967 38.0116L31.7187 38.0888L32.3119 38.4437Z" fill="#393939" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M34.624 19.0741L32.5708 23.9358L31.6279 38.0885H28.2971L27.2629 23.9358L25.377 19.0741H34.624Z" fill="#F89C35" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M43.597 29.7547L46 36.7925L40.0077 36.4375H36.1598V33.3971L36.3271 27.1618L37.194 27.8409L43.597 29.7547Z" fill="#F89D35" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M39.0635 30.5419L32.0522 30.7116L32.8278 34.354L36.1586 33.4897L39.0635 30.5419Z" fill="#D87C30" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M39.0635 30.6188L36.1586 33.3968V36.1749L39.0635 30.6188Z" fill="#EA8D3A" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M36.1592 33.4892L32.7372 34.3534L31.6269 38.0884L32.4026 38.5206L36.1592 36.2672V33.4892Z" fill="#F89D35" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M36.1593 36.2678L36.8438 41.6542L32.3115 38.444L36.1593 36.2678Z" fill="#EB8F35" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M32.0554 30.7115L31.63 38.0888L32.9062 34.323L32.0554 30.7115Z" fill="#EA8E3A" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M40.0996 36.3604L36.1605 36.2678L36.8449 41.6542L40.0996 36.3604Z" fill="#D87C30" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M44.1141 44L36.8442 41.6541L40.0989 36.3603L46 36.7924L44.1141 44Z" fill="#EB8F35" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M32.5693 23.9361L36.2498 27.0691L39.0635 30.5417L32.0522 30.8041L32.5693 23.9361Z" fill="#E8821E" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M36.8438 41.6541L32.3115 38.4438L32.6461 41.2219V42.7807L35.7335 42.1788L36.8438 41.6541Z" fill="#DFCEC3" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M23.1561 41.6541L27.6123 38.4438L27.2625 41.2219V42.7807L24.1903 42.1788L23.1561 41.6541Z" fill="#DFCEC3" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M33.9403 32.2701L32.9974 34.2765L36.3281 33.3967L33.9403 32.2701Z" fill="#393939" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M44.2074 15L32.5725 23.9361L34.5345 19.0745L44.2074 15Z" fill="#E88F35" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M44.2054 15L45.7415 19.769L44.8898 24.9856L45.4829 25.3252L44.6312 26.1123L45.3156 26.7142L44.3727 27.5785L44.9658 28.1032L43.597 29.8318L37.1788 27.8409C34.0458 25.2943 32.4945 23.9979 32.5553 23.9361C32.6162 23.8744 36.5096 20.8957 44.2054 15Z" fill="#8E5A30" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M16.403 29.7547L14 36.7925L19.9923 36.4375H23.8402V33.3971L23.6729 27.1618L22.8212 27.8409L16.403 29.7547Z" fill="#F89D35" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M20.9365 30.5419L27.9478 30.7116L27.1874 34.354L23.8414 33.4897L20.9365 30.5419Z" fill="#D87C30" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M20.9365 30.6188L23.8414 33.3968V36.1749L20.9365 30.6188Z" fill="#EA8D3A" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M23.8408 33.4892L27.2628 34.3534L28.3731 38.0884L27.6126 38.5206L23.8408 36.2672V33.4892Z" fill="#F89D35" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M23.8407 36.2678L23.1562 41.6542L27.6125 38.5211L23.8407 36.2678Z" fill="#EB8F35" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M27.9456 30.7115L28.371 38.0888L27.0947 34.323L27.9456 30.7115Z" fill="#EA8E3A" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M19.9023 36.3604L23.8415 36.2678L23.1571 41.6542L19.9023 36.3604Z" fill="#D87C30" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M15.8859 44L23.1558 41.6541L19.9011 36.3603L14 36.7924L15.8859 44Z" fill="#EB8F35" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M27.4307 23.9361L23.7502 27.0691L20.9365 30.5417L27.9478 30.8041L27.4307 23.9361Z" fill="#E8821E" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M26.0607 32.2701L27.0036 34.2765L23.6729 33.3967L26.0607 32.2701Z" fill="#393939" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M15.7955 15L27.4303 23.9361L25.4683 19.0745L15.7955 15Z" fill="#E88F35" fill-rule="evenodd"></path>
+<path clip-rule="evenodd" d="M15.7946 15L14.2585 19.769L15.1102 24.9856L14.5171 25.3252L15.3688 26.1123L14.6844 26.7142L15.6273 27.5785L15.0342 28.1032L16.403 29.8318L22.8212 27.8409C25.9542 25.2943 27.5055 23.9979 27.4447 23.9361C27.3838 23.8744 23.5056 20.8957 15.7946 15Z" fill="#8E5A30" fill-rule="evenodd"></path>
+</symbol>
+<symbol id="phantom" viewbox="0 0 128 128">
+<circle cx="64" cy="64" fill="url(#paint0_linear)" r="64"></circle>
+<path d="M110.584 64.9142H99.142C99.142 41.7651 80.173 23 56.7724 23C33.6612 23 14.8716 41.3057 14.4118 64.0583C13.936 87.577 36.241 108 60.0186 108H63.0094C83.9723 108 112.069 91.7667 116.459 71.9874C117.27 68.3413 114.358 64.9142 110.584 64.9142ZM39.7689 65.9454C39.7689 69.0411 37.2095 71.5729 34.0802 71.5729C30.9509 71.5729 28.3916 69.0399 28.3916 65.9454V56.8414C28.3916 53.7457 30.9509 51.2139 34.0802 51.2139C37.2095 51.2139 39.7689 53.7457 39.7689 56.8414V65.9454ZM59.5224 65.9454C59.5224 69.0411 56.9631 71.5729 53.8338 71.5729C50.7045 71.5729 48.1451 69.0399 48.1451 65.9454V56.8414C48.1451 53.7457 50.7056 51.2139 53.8338 51.2139C56.9631 51.2139 59.5224 53.7457 59.5224 56.8414V65.9454Z" fill="url(#paint1_linear)"></path>
+<defs>
+<lineargradient gradientunits="userSpaceOnUse" id="paint0_linear" x1="64" x2="64" y1="0" y2="128">
+<stop stop-color="#534BB1"></stop>
+<stop offset="1" stop-color="#551BF9"></stop>
+</lineargradient>
+<lineargradient gradientunits="userSpaceOnUse" id="paint1_linear" x1="65.4998" x2="65.4998" y1="23" y2="108">
+<stop stop-color="white"></stop>
+<stop offset="1" stop-color="white" stop-opacity="0.82"></stop>
+</lineargradient>
+</defs>
+</symbol>
+<symbol id="coinbase" viewbox="0 0 1024 1024">
+<rect fill="#0052FF" height="1024" width="1024"></rect>
+<path clip-rule="evenodd" d="M152 512C152 710.823 313.177 872 512 872C710.823 872 872 710.823 872 512C872 313.177 710.823 152 512 152C313.177 152 152 313.177 152 512ZM420 396C406.745 396 396 406.745 396 420V604C396 617.255 406.745 628 420 628H604C617.255 628 628 617.255 628 604V420C628 406.745 617.255 396 604 396H420Z" fill="white" fill-rule="evenodd"></path>
+</symbol>
+</svg>
+<button class="btn btn-primary btn-sm wallet-modal-trigger" id="wallet-connection" type="button">
+<span id="wallet-connection-text">Connect wallet</span>
+</button>
+<div class="dropdown d-none">
+<button aria-expanded="false" class="btn btn-light dropdown-toggle wallet-options d-flex justify-content-between align-items-center w-100" data-toggle="dropdown" type="button">
+</button>
+<div class="dropdown-menu wallet-dropdown-menu">
+</div>
+</div>
+<div aria-hidden="true" aria-labelledby="exampleModalLabel" class="modal fade show" id="exampleModal" tabindex="-1">
+<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="exampleModalLabel">Select wallet</h5>
+<button aria-label="Close" class="close wallet-modal-trigger" type="button">
+<span aria-hidden="true">×</span>
+</button>
+</div>
+<div class="modal-body modal-body-wallets d-flex flex-column justify-content-center">
+<button class="btn modal-wallet-selection" data-value="#metamask">
+<svg class="mr-2" height="50" width="50">
+<use xlink:href="#metamask"></use>
+</svg>
+                Metamask
+              </button>
+<button class="btn modal-wallet-selection" data-value="#phantom">
+<svg class="mr-2" height="50" width="50">
+<use xlink:href="#phantom"></use>
+</svg>
+                Phantom
+              </button>
+<button class="btn modal-wallet-selection" data-value="#coinbase">
+<svg class="mr-2" height="50" width="50">
+<use xlink:href="#coinbase"></use>
+</svg>
+                Coinbase
+              </button>
+</div>
+<div class="modal-footer">
+<button class="btn btn-secondary wallet-modal-trigger" type="button">Close</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<ul class="nav">
+<li class="nav-item">
+<a class="nav-link" href="/bsc/dex_tokens?from=2023-05-19&amp;theme=dark&amp;till=2023-05-19"><i class="fa fa-moon text-default"></i></a>
+</li>
+<li class="nav-item dropdown">
+<a aria-expanded="false" aria-haspopup="true" class="nav-link" data-toggle="dropdown" href="#" id="navbarDropdown" role="button">
+<span lang="en" title="English">🇺🇸</span>
+</a>
+<div aria-labelledby="navbarDropdown" class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item" href="/bsc/dex_tokens?from=2023-05-19&amp;till=2023-05-19" lang="en">🇺🇸 English</a>
+<a class="dropdown-item" href="/zh/bsc/dex_tokens?from=2023-05-19&amp;till=2023-05-19" lang="zh">🇨🇳 中文</a>
+<a class="dropdown-item" href="/ru/bsc/dex_tokens?from=2023-05-19&amp;till=2023-05-19" lang="ru">🇷🇺 Русский</a>
+</div>
+</li>
+</ul>
+</nav>
+</header>
+<div class="container-fluid d-flex justify-content-between align-items-center">
+<ol class="breadcrumb">
+<li class="breadcrumb-item word-wrap"><a href="/">Blockchains</a></li>
+<li class="breadcrumb-item word-wrap"><a href="/bsc">Binance Smart Chain Mainnet</a></li>
+<li class="breadcrumb-item word-wrap active">DEX Tokens</li>
+</ol>
+<a class="nav-link" href="https://coincodecap.com/?utm_source=bitquery" target="_blank">
+<i aria-hidden="true" class="fa fa-info-circle"></i> 
+        Crypto News
+</a> </div>
+<div class="container-fluid">
+<div class="row my-2 d-lg-none">
+<div class="col">
+<form accept-charset="UTF-8" action="/search" class="search-form" method="post"><input name="authenticity_token" type="hidden" value="fKeGciGjiX1LHm4ckHnNvGRU0W6MOiIxDfOydDB0WMVu04pUBu7UbJ4tnaP71hgbDMbt3ehJwUuD8B8xJMzOKg=="/>
+<div class="input-group">
+<input class="form-control form-control-sm" name="query" placeholder="Enter blockchain address..." type="text"/>
+<div class="input-group-append">
+<button class="btn btn-primary btn-sm search-form-type d-none d-lg-inline-block" data-network="bsc" type="button">Binance Smart Chain Mainnet</button>
+<button class="btn btn-primary btn-sm search-form-type d-lg-none" data-network="bsc" type="button"><img alt="Binance Smart Chain Mainnet" class="search-icon" src="/packs/media/icon/bnb-9db5aa6c.svg" style="width: 32px; height: auto"/><i class="fa fa-search search-icon"></i></button>
+<button aria-expanded="false" aria-haspopup="true" class="btn btn-primary btn-sm dropdown-toggle dropdown-toggle-split" data-toggle="dropdown" type="button"></button>
+<div class="dropdown-menu dropdown-menu-right">
+<a class="dropdown-item search-form-type" data-network="">Search in all blockchains</a>
+<a class="dropdown-item search-form-type" data-network="bitcoin">Bitcoin Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="litecoin">Litecoin</a>
+<a class="dropdown-item search-form-type" data-network="dogecoin">Dogecoin</a>
+<a class="dropdown-item search-form-type" data-network="dash">Dash</a>
+<a class="dropdown-item search-form-type" data-network="ethereum">Ethereum Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="ethclassic">Ethereum Classic</a>
+<a class="dropdown-item search-form-type" data-network="ethclassic_reorg">Ethereum Classic no reorg</a>
+<a class="dropdown-item search-form-type" data-network="ethpow">Ethereum PoW</a>
+<a class="dropdown-item search-form-type" data-network="zcash">ZCash</a>
+<a class="dropdown-item search-form-type" data-network="bitcash">Bitcoin Cash</a>
+<a class="dropdown-item search-form-type" data-network="bitcoinsv">Bitcoin SV</a>
+<a class="dropdown-item search-form-type" data-network="cardano">Cardano</a>
+<a class="dropdown-item search-form-type" data-network="algorand">Algorand Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="algorand_testnet">Algorand Testnet</a>
+<a class="dropdown-item search-form-type" data-network="algorand_betanet">Algorand Betanet</a>
+<a class="dropdown-item search-form-type" data-network="binance">Binance DEX</a>
+<a class="dropdown-item search-form-type" data-network="celo_alfajores">Celo Alfajores Testnet</a>
+<a class="dropdown-item search-form-type" data-network="bsc_testnet">Binance Smart Chain Testnet</a>
+<a class="dropdown-item search-form-type" data-network="goerli">Goerli Ethereum Testnet</a>
+<a class="dropdown-item search-form-type" data-network="celo_baklava">Celo Baklava Testnet</a>
+<a class="dropdown-item search-form-type" data-network="celo_mainnet">Celo Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="conflux_hydra">Conflux Hydra</a>
+<a class="dropdown-item search-form-type" data-network="conflux_oceanus">Conflux Oceanus</a>
+<a class="dropdown-item search-form-type" data-network="diem_testnet">Diem Testnet</a>
+<a class="dropdown-item search-form-type" data-network="libra_testnet">Libra Testnet</a>
+<a class="dropdown-item search-form-type" data-network="hedera">Hedera Hashgraph Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="eos">EOS Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="tron">TRON Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="solana">Solana Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="medalla">Medalla Eth 2.0 Testnet</a>
+<a class="dropdown-item search-form-type" data-network="eth2">Beacon Chain Ethereum 2.0</a>
+<a class="dropdown-item search-form-type" data-network="filecoin">Filecoin Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="matic">Matic (Polygon) Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="velas">Velas Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="velas_testnet">Velas Testnet</a>
+<a class="dropdown-item search-form-type" data-network="klaytn">Klaytn Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="elrond">The MultiversX (Elrond) Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="avalanche">Avalanche  C-chain</a>
+<a class="dropdown-item search-form-type" data-network="fantom">Fantom Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="moonbeam">Moonbeam Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="cronos">Cronos Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="cosmoshub">Cosmos Hub Network</a>
+<a class="dropdown-item search-form-type" data-network="crypto_mainnet">Crypto.org Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="crypto_testnet">Crypto.org Croeseid Testnet</a>
+<a class="dropdown-item search-form-type" data-network="heimdall">Heimdall (Matic Verification Network)</a>
+<a class="dropdown-item search-form-type" data-network="terra">Terra</a>
+<a class="dropdown-item search-form-type" data-network="flow">Flow Mainnet</a>
+<a class="dropdown-item search-form-type" data-network="stellar">Stellar Ledger</a>
+<a class="dropdown-item search-form-type" data-network="ripple">Ripple XRP Ledger</a>
+<a class="dropdown-item search-form-type" data-network="tezos">Tezos</a>
+<a class="dropdown-item search-form-type" data-network="everscale">Everscale</a>
+</div>
+</div>
+</div>
+</form><script>
+    search('.search-form');
+</script>
+</div>
+</div>
+<script>
+    widgets.callbacks({
+
+        dex_protocol_path: function(item){
+              return '/bsc' + '/dex_protocol/' + encodeURIComponent(item.protocol);
+        },
+        dex_exchange_path: function(item){
+            if(item.exchange.fullName.startsWith('<')){
+              return null;
+            }else{
+              return '/bsc' + '/dex/' + item.exchange.fullName;
+            }
+        },
+        token_path: function(item){
+            if(item.currency.address=='-'){
+                return '/bsc/token/'+  escapeHtml(item.currency.symbol);
+            }else{
+                return '/bsc/token/'+  item.currency.address;
+            }
+
+        },
+        buy_token_path: function(item){
+            if(item.buyCurrency.address=='-'){
+                return '/bsc/token/'+  escapeHtml(item.buyCurrency.symbol);
+            }else{
+                return '/bsc/token/'+  item.buyCurrency.address;
+            }
+
+        },
+        sell_token_path: function(item){
+            if(item.sellCurrency.address=='-'){
+                return '/bsc/token/'+  escapeHtml(item.sellCurrency.symbol);
+            }else{
+                return '/bsc/token/'+  item.sellCurrency.address;
+            }
+
+        },
+        transfer_to_path: function(item){
+            if(item.count_in==0) {
+                return null;
+            }else{
+                return '/bsc'+'/txs/transfers?receiver=&currency='+
+                    (item.currency.address=='-' ? escapeHtml(item.currency.symbol) : item.currency.address ) +
+                    (item.address ? '&sender='+item.address.address : '');
+            }
+        },
+        transfer_from_path: function(item){
+            if(item.count_out==0) {
+                return null;
+            }else {
+                return '/bsc/txs/transfers?sender=&currency=' +
+                    (item.currency.address=='-' ? escapeHtml(item.currency.symbol) : item.currency.address ) +
+                    (item.address ? '&receiver='+item.address.address : '');
+            }
+        },
+        transfer_token_sender_path: function(item){
+            return '/bsc/txs/transfers?currency=&sender='+item.sender.address;
+        },
+        transfer_token_receiver_path: function(item){
+            return '/bsc/txs/transfers?currency=&receiver='+item.receiver.address;
+        },
+        smart_contract_method_path: function(item){
+            return '/bsc'+'/method/'+item.smartContractMethod.signatureHash;
+        },
+        smart_contract_event_path: function(item){
+            return '/bsc'+'/event/'+item.smartContractEvent.signatureHash;
+        },
+        address_path: function(item){
+            if (item.address.address!='0x0000000000000000000000000000000000000000'){
+                return '/bsc'+'/address/'+item.address.address;
+            }
+        },
+        sender_address_path: function(item){
+            if (item.sender.address!='0x0000000000000000000000000000000000000000') {
+                return '/bsc' + '/address/' + item.sender.address;
+            }
+        },
+        receiver_address_path: function(item){
+            if (item.receiver.address!='0x0000000000000000000000000000000000000000') {
+                return '/bsc' + '/address/' + item.receiver.address;
+            }
+        },
+        block_path: function(item){
+            return '/bsc'+'/block/'+(item.height || item.block.height);
+        },
+        transaction_path: function(item){
+            return '/bsc'+'/tx/'+ (item.hash || item.transaction.hash);
+        },
+        smart_contract_path: function(item){
+            if (item.smartContract.address.address!='0x0000000000000000000000000000000000000000') {
+                return '/bsc' + '/smart_contract/' + item.smartContract.address.address;
+            }
+        },
+        call_count_path: function(item){
+            return '/bsc/txs/calls?caller=&contract=' + item.smartContract.address.address;
+        },
+        call_method_count_path: function(item){
+            return '/bsc/txs/calls?contract=&method=' + item.smartContractMethod.signatureHash;
+        },
+        event_count_path: function(item){
+            return '/bsc/txs/events?contract=&event=' + item.smartContractEvent.signatureHash;
+        },
+        internal_call_method_count_path: function(item){
+            return '/bsc/txs/calls?internal=true&contract=&method=' + item.smartContractMethod.signatureHash;
+        },
+        external_call_method_count_path: function(item){
+            return '/bsc/txs/calls?internal=false&contract=&method=' + item.smartContractMethod.signatureHash;
+        },
+        call_by_caller_count_path: function(item){
+            return '/bsc/txs/calls?contract=&caller='+item.address.address;
+        },
+        property_value_path: function(item){
+            if (item.address && item.address.address!='0x0000000000000000000000000000000000000000' ) {
+                return '/bsc' + '/address/' + item.address.address;
+            } else if (item.block ){
+                return '/bsc'+'/block/'+item.block.height;
+            }else{
+                return null;
+            }
+
+        },
+        token_pair_path: function(item) {
+            return '/bsc'+'/tokenpair//'+ item.quoteCurrency.address
+        },
+        token_pair_buysell_path: function(item) {
+            return '/bsc'+'/tokenpair/'+item.sellCurrency.address+'/'+ item.buyCurrency.address
+        }
+    });
+
+</script>
+<div class="row mt-2 mb-2">
+<div class="col-12 col-lg">
+<div class="mt-2 word-wrap">
+<img alt="Binance Smart Chain Mainnet" src="/packs/media/icon/bnb-9db5aa6c.svg" style="width: 32px; height: auto"/>
+      Binance Smart Chain Mainnet Blockchain Explorer</div>
+</div>
+<div class="col-12 col-lg-auto">
+<div class="row reportrange mb-4">
+<div class="col text-right">
+<label>Date range</label>
+<div id="reportrange">
+<i class="fa fa-calendar"></i> 
+      <span></span> <i class="fa fa-caret-down"></i>
+</div>
+<script>
+        rr = new reportRange('#reportrange', "2023-05-19",
+            "2023-05-19",
+            {
+                locale: 'en',
+                //all_time: '',
+                format: 'MMMM D, YYYY',
+                apply: 'Apply',
+                clear: 'Clear',
+                today: 'Today',
+                yesterday: 'Yesterday',
+                last7: 'Last 7 days',
+                last30: 'Last 30 days',
+                this_month: 'This month',
+                last_month: 'Last month',
+                custom_range: 'Custom range'
+            }
+        );
+    </script>
+</div>
+</div>
+</div>
+</div>
+<ul class="nav nav-tabs mb-4">
+<li class="nav-item dropdown d-block d-md-none">
+<a aria-expanded="false" aria-haspopup="true" class="nav-link active dropdown-toggle" data-toggle="dropdown" href="#" role="button">DEX Tokens</a>
+<div class="dropdown-menu">
+<a class="dropdown-item false" data-changeurl="true" href="/bsc?from=2023-05-19&amp;till=2023-05-19">Blocks</a>
+<a class="dropdown-item false" data-changeurl="true" href="/bsc/nft?from=2023-05-19&amp;till=2023-05-19">NFT</a>
+<a class="dropdown-item false" data-changeurl="true" href="/bsc/transactions?from=2023-05-19&amp;till=2023-05-19">Transactions</a>
+<a class="dropdown-item false" data-changeurl="true" href="/bsc/gas?from=2023-05-19&amp;till=2023-05-19">Gas Analytics</a>
+<a class="dropdown-item false" data-changeurl="true" href="/bsc/transfers?from=2023-05-19&amp;till=2023-05-19">Transfers</a>
+<a class="dropdown-item false" data-changeurl="true" href="/bsc/tokens?from=2023-05-19&amp;till=2023-05-19">Tokens</a>
+<a class="dropdown-item false" data-changeurl="true" href="/bsc/dex?from=2023-05-19&amp;till=2023-05-19">DEX</a>
+<a class="dropdown-item false" data-changeurl="true" href="/bsc/dex_protocols?from=2023-05-19&amp;till=2023-05-19">DEX Protocols</a>
+<a class="dropdown-item false" data-changeurl="true" href="/bsc/dex_trades?from=2023-05-19&amp;till=2023-05-19">DEX Trades</a>
+<a class="dropdown-item active" data-changeurl="true" href="/bsc/dex_tokens?from=2023-05-19&amp;till=2023-05-19">DEX Tokens</a>
+<a class="dropdown-item false" data-changeurl="true" href="/bsc/calls?from=2023-05-19&amp;till=2023-05-19">Smart Contract Calls</a>
+<a class="dropdown-item false" data-changeurl="true" href="/bsc/miners?from=2023-05-19&amp;till=2023-05-19">Miners</a>
+<a class="dropdown-item false" data-changeurl="true" href="/bsc/miner_distrib?from=2023-05-19&amp;till=2023-05-19">Miner distribution</a>
+</div>
+</li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc?from=2023-05-19&amp;till=2023-05-19">Blocks</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc/nft?from=2023-05-19&amp;till=2023-05-19">NFT</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc/transactions?from=2023-05-19&amp;till=2023-05-19">Transactions</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc/gas?from=2023-05-19&amp;till=2023-05-19">Gas Analytics</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc/transfers?from=2023-05-19&amp;till=2023-05-19">Transfers</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc/tokens?from=2023-05-19&amp;till=2023-05-19">Tokens</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc/dex?from=2023-05-19&amp;till=2023-05-19">DEX</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc/dex_protocols?from=2023-05-19&amp;till=2023-05-19">DEX Protocols</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc/dex_trades?from=2023-05-19&amp;till=2023-05-19">DEX Trades</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link active" data-changeurl="true" href="/bsc/dex_tokens?from=2023-05-19&amp;till=2023-05-19">DEX Tokens</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc/calls?from=2023-05-19&amp;till=2023-05-19">Smart Contract Calls</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc/miners?from=2023-05-19&amp;till=2023-05-19">Miners</a></li>
+<li class="nav-item d-none d-md-block"><a class="nav-link false" data-changeurl="true" href="/bsc/miner_distrib?from=2023-05-19&amp;till=2023-05-19">Miner distribution</a></li>
+<li class="nav-item nav-item-ad"><a class="nav-link nav-link-ad" href="https://jn3rg.app.link/Bitquery_1inch" style="background-color: #0570f2" target="blank">Free DEX Swaps <sup class="fas fa-ad text-second"></sup></a></li>
+<li class="nav-item nav-item-ad"><a class="nav-link nav-link-ad" href="https://verse.bitcoin.com/?utm_source=bitquery&amp;utm_medium=web&amp;utm_campaign=bitquery_explorer" style="background-color: green" target="blank">Verse DEX <sup class="fas fa-ad text-second"></sup></a></li>
+</ul>
+<div><div class="row">
+<div class="col-12 col-lg-6 mb-4">
+<div class="card">
+<div class="card-header">Traded currencies by time</div>
+<div class="card-body">
+<div id="unique_currencies_by_time">Loading...</div>
+</div>
+</div>
+</div>
+<script>
+
+    $( document ).ready(function() {
+
+        var query = new widgets.query(`
+            query ($network: EthereumNetwork!,
+                  $dateFormat: String!,
+
+                  $from: ISO8601DateTime,
+                  $till: ISO8601DateTime){
+                    ethereum(network: $network ){
+                      dexTrades(options:{asc: "date.date"}, date: {
+                        since: $from
+                        till: $till}
+
+                      ) {
+                        date: date{
+                          date(format: $dateFormat)
+                        }
+                            currencies: countBigInt(uniq: buy_currency)
+
+                      }
+                    }
+                  }`);
+
+        new widgets.chartByTime('#unique_currencies_by_time', query, 'ethereum.dexTrades', {
+            title: 'Traded currencies by time',
+            chartOptions: {
+                vAxes: {
+                    '0': {
+                        title: 'Currencies'
+                    }
+                },
+                seriesType: 'bars',
+                series: {
+                    '0': { color: '#28a745' }
+                },
+            },
+            dataOptions: [
+                {
+                    title: {label: 'Date', type: 'date' },
+                    path: 'date.date'
+                },
+                {
+                    title: {label: 'Currencies', type: 'number' },
+                    path: 'currencies'
+                },
+
+            ]
+        });
+
+        queryWithTimeRange(rr, query, "2023-05-19","2023-05-19",{
+            network: 'bsc'
+        });
+
+
+    });
+</script>
+<div class="col-6 col-lg-6 mb-4">
+<div class="card">
+<div class="card-header">Trades By Pairs</div>
+<div class="card-body">
+<div id="trades_by_currencies">Loading...</div>
+</div>
+</div>
+</div>
+<script>
+
+    $( document ).ready(function() {
+
+
+        var query = new widgets.query(`
+                        query ($network: EthereumNetwork!,
+                                $limit: Int!,
+                                $offset: Int!
+                                $from: ISO8601DateTime,
+                                $till: ISO8601DateTime){
+                    ethereum(network: $network){
+                      dexTrades(options:{desc: "tradeAmount", limit: $limit, offset: $offset},
+                        date: {since: $from till: $till }
+
+                        ) {
+
+                            buyCurrency {
+                              symbol
+                              address
+                            }
+
+                            sellCurrency {
+                              symbol
+                              address
+                            }
+
+                            count
+                            tradeAmount(in: USD)
+                            dates: count(uniq: dates)
+                            started: minimum(of: date)
+                      }
+                    }
+                  }`);
+
+        new widgets.table('#trades_by_currencies', query, 'ethereum.dexTrades', {
+            title: 'Trades By Pairs',
+            dataOptions: [
+                {
+                    title: 'Pair',
+                    type: 'string-safe',
+                    path: 'buyCurrency.symbol',
+                    renderCallback: function(item){
+                        return item.buyCurrency.symbol + ' / ' + item.sellCurrency.symbol;
+                    },
+                    urlCallbackName: 'token_pair_buysell_path'
+                },
+
+                {
+                    title: 'Trades',
+                    path: 'count'
+                },
+                {
+                    title: 'Amount, USD',
+                    path: 'tradeAmount'
+                },
+                {
+                    title: 'Started',
+                    path: 'started'
+                },
+                {
+                    title: 'Days traded',
+                    path: 'dates'
+                },
+
+
+
+            ]
+        });
+
+        queryWithTimeRange(rr, query, "2023-05-19","2023-05-19",{
+            network: 'bsc'
+        });
+    });
+
+</script>
+</div>
+<div class="row">
+<div class="col-12 col-lg-12 mb-4">
+<div class="card">
+<div class="card-header">Token Trade Pairs</div>
+<div class="card-body">
+<div id="token_currencies">Loading...</div>
+</div>
+</div>
+</div>
+</div>
+<script>
+
+    $( document ).ready(function() {
+
+
+        var query = new widgets.query(`
+                        query ($network: EthereumNetwork!,
+                                $limit: Int!,
+                                $offset: Int!
+                                $from: ISO8601DateTime,
+                                $till: ISO8601DateTime){
+                    ethereum(network: $network){
+                      dexTrades(options:{desc: "count", limit: $limit, offset: $offset},
+                        date: {since: $from till: $till }
+
+                        ) {
+
+                          sellCurrency {
+                            symbol
+                            address
+                          }
+
+                          sellAmount
+
+                          sell_amount_usd: sellAmount(in: USD)
+
+                          buyCurrency {
+                            symbol
+                            address
+                          }
+
+                          buyAmount
+                          buy_amount_usd: buyAmount(in: USD)
+
+                          count
+                          median_price: price(calculate: median)
+
+                          last_price: maximum(of: block, get: price)
+
+                          dates: count(uniq: dates)
+                          started: minimum(of: date)
+
+
+                      }
+                    }
+                  }`);
+
+        new widgets.table('#token_currencies', query, 'ethereum.dexTrades', {
+            title: 'Token Trade Pairs',
+            dataOptions: [
+
+
+                {
+                    title: 'Sell amount',
+                    type: 'amount',
+                    path: 'sellAmount'
+                },
+                {
+                    title: 'Sell currency',
+                    type: 'string',
+                    path: 'sellCurrency.symbol',
+                    urlCallbackName: 'sell_token_path',
+                    renderCallback: function(item){
+  return item.sellCurrency.symbol + '&nbsp;<sup class="text-success">' + ((amount = item.sell_amount_usd) > 0 ? '$'+amount.toFixed(2) : '-') +'</sup>'
+}
+                },
+                {
+                    title: '',
+                    type: 'string',
+                    data: '<i class="fa fa-sign-in text-success"></i>',
+                    html_class: 'text-center'
+                },
+
+                {
+                    title: 'Buy amount',
+                    type: 'amount',
+                    path: 'buyAmount'
+                },
+                {
+                    title: 'Buy currency',
+                    type: 'string',
+                    path: 'buyCurrency.symbol',
+                    urlCallbackName: 'buy_token_path',
+                    renderCallback: function(item){
+  return item.buyCurrency.symbol + '&nbsp;<sup class="text-success">' + ((amount = item.buy_amount_usd) > 0 ? '$'+amount.toFixed(2) : '-') +'</sup>'
+}
+                },
+
+                {
+                    title: 'Trades',
+                    path: 'count'
+                },
+
+                {
+                    title: 'Started',
+                    path: 'started'
+                },
+                {
+                    title: 'Days traded',
+                    path: 'dates'
+                },
+
+                {
+                    title: 'Median Price',
+                    type: 'amount',
+                    path: 'median_price'
+                },
+                {
+                    title: 'Last Price',
+                    type: 'amount',
+                    path: 'last_price'
+                },
+
+            ]
+        });
+
+        queryWithTimeRange(rr, query, "2023-05-19","2023-05-19",{
+            network: 'bsc'
+        });
+    });
+
+</script></div>
+<footer>
+<div class="container-fluid mt-5 mb-5 text-center">
+<div style="margin-bottom: 5px;">
+<a href="/bitcoin" title="Bitcoin Mainnet Explorer"><img alt="Bitcoin Mainnet" src="/packs/media/icon/btc-93237c24.svg" style="width: 32px; height: auto"/></a>
+<a href="/litecoin" title="Litecoin Explorer"><img alt="Litecoin" src="/packs/media/icon/ltc-850ce1e6.svg" style="width: 32px; height: auto"/></a>
+<a href="/dogecoin" title="Dogecoin Explorer"><img alt="Dogecoin" src="/packs/media/icon/doge-733aebf3.svg" style="width: 32px; height: auto"/></a>
+<a href="/dash" title="Dash Explorer"><img alt="Dash" src="/packs/media/icon/dash-96b2c944.svg" style="width: 32px; height: auto"/></a>
+<a href="/ethereum" title="Ethereum Mainnet Explorer"><img alt="Ethereum Mainnet" src="/packs/media/icon/eth-093b3f87.svg" style="width: 32px; height: auto"/></a>
+<a href="/ethclassic" title="Ethereum Classic Explorer"><img alt="Ethereum Classic" src="/packs/media/icon/etc-fc7839d1.svg" style="width: 32px; height: auto"/></a>
+<a href="/ethclassic_reorg" title="Ethereum Classic no reorg Explorer"><img alt="Ethereum Classic no reorg" src="/packs/media/icon/etc-fc7839d1.svg" style="width: 32px; height: auto"/></a>
+<a href="/ethpow" title="Ethereum PoW Explorer"><img alt="Ethereum PoW" src="/assets/currency/ethpow-a47426bdf348b1530c9d83314f5fdd75cbb99399b858651002390c34882871e7.png" style="width: 32px; height: auto"/></a>
+<a href="/zcash" title="ZCash Explorer"><img alt="ZCash" src="/packs/media/icon/zec-3a9ea0e3.svg" style="width: 32px; height: auto"/></a>
+<a href="/bitcash" title="Bitcoin Cash Explorer"><img alt="Bitcoin Cash" src="/packs/media/icon/bch-a266d020.svg" style="width: 32px; height: auto"/></a>
+<a href="/bitcoinsv" title="Bitcoin SV Explorer"><img alt="Bitcoin SV" src="/packs/media/icon/bsv-ebecc980.svg" style="width: 32px; height: auto"/></a>
+<a href="/cardano" title="Cardano Explorer"><img alt="Cardano" src="/packs/media/icon/ada-34683977.svg" style="width: 32px; height: auto"/></a>
+<a href="/algorand" title="Algorand Mainnet Explorer"><img alt="Algorand Mainnet" src="/assets/currency/algo-f874d3ec6f8c1298b3afe69d805580ef217690ec40f172f6856bd29565133561.png" style="width: 32px; height: auto"/></a>
+<a href="/algorand_testnet" title="Algorand Testnet Explorer"><img alt="Algorand Testnet" src="/assets/currency/algo-f874d3ec6f8c1298b3afe69d805580ef217690ec40f172f6856bd29565133561.png" style="width: 32px; height: auto"/></a>
+<a href="/algorand_betanet" title="Algorand Betanet Explorer"><img alt="Algorand Betanet" src="/assets/currency/algo-f874d3ec6f8c1298b3afe69d805580ef217690ec40f172f6856bd29565133561.png" style="width: 32px; height: auto"/></a>
+<a href="/binance" title="Binance DEX Explorer"><img alt="Binance DEX" src="/packs/media/icon/bnb-9db5aa6c.svg" style="width: 32px; height: auto"/></a>
+<a href="/celo_alfajores" title="Celo Alfajores Testnet Explorer"><img alt="Celo Alfajores Testnet" src="/assets/currency/celo-a41c34d0c1a7a01a31488d6ba8dbd33b7847befcd605c2d8390ac8390c20e0b9.png" style="width: 32px; height: auto"/></a>
+<a href="/bsc_testnet" title="Binance Smart Chain Testnet Explorer"><img alt="Binance Smart Chain Testnet" src="/packs/media/icon/bnb-9db5aa6c.svg" style="width: 32px; height: auto"/></a>
+<a href="/bsc" title="Binance Smart Chain Mainnet Explorer"><img alt="Binance Smart Chain Mainnet" src="/packs/media/icon/bnb-9db5aa6c.svg" style="width: 32px; height: auto"/></a>
+<a href="/goerli" title="Goerli Ethereum Testnet Explorer"><img alt="Goerli Ethereum Testnet" src="/packs/media/icon/eth-093b3f87.svg" style="width: 32px; height: auto"/></a>
+<a href="/celo_baklava" title="Celo Baklava Testnet Explorer"><img alt="Celo Baklava Testnet" src="/assets/currency/celo-a41c34d0c1a7a01a31488d6ba8dbd33b7847befcd605c2d8390ac8390c20e0b9.png" style="width: 32px; height: auto"/></a>
+<a href="/celo_mainnet" title="Celo Mainnet Explorer"><img alt="Celo Mainnet" src="/assets/currency/celo-a41c34d0c1a7a01a31488d6ba8dbd33b7847befcd605c2d8390ac8390c20e0b9.png" style="width: 32px; height: auto"/></a>
+<a href="/conflux_hydra" title="Conflux Hydra Explorer"><img alt="Conflux Hydra" src="/assets/currency/conflux-214dccf081957b672a576ca36f012d906746d72559bf69619f43b6706c4c1705.png" style="width: 32px; height: auto"/></a>
+<a href="/conflux_oceanus" title="Conflux Oceanus Explorer"><img alt="Conflux Oceanus" src="/assets/currency/conflux-214dccf081957b672a576ca36f012d906746d72559bf69619f43b6706c4c1705.png" style="width: 32px; height: auto"/></a>
+<a href="/diem_testnet" title="Diem Testnet Explorer"><img alt="Diem Testnet" src="/assets/currency/libra-b8d35e01bd437700d4d39a3cf6cd3274879d27cfb3a0a687e24d305178acbd75.png" style="width: 32px; height: auto"/></a>
+<a href="/libra_testnet" title="Libra Testnet Explorer"><img alt="Libra Testnet" src="/assets/currency/libra-b8d35e01bd437700d4d39a3cf6cd3274879d27cfb3a0a687e24d305178acbd75.png" style="width: 32px; height: auto"/></a>
+<a href="/hedera" title="Hedera Hashgraph Mainnet Explorer"><img alt="Hedera Hashgraph Mainnet" src="/assets/currency/hedera-hashgraph-acaf7d6cc48d83bab1806388a6d6195758d0234c4c05462a388ce01373c3f877.svg" style="width: 32px; height: auto"/></a>
+<a href="/eos" title="EOS Mainnet Explorer"><img alt="EOS Mainnet" src="/packs/media/icon/eos-8381621a.svg" style="width: 32px; height: auto"/></a>
+<a href="/tron" title="TRON Mainnet Explorer"><img alt="TRON Mainnet" src="/packs/media/icon/trx-e77d3809.svg" style="width: 32px; height: auto"/></a>
+<a href="/solana" title="Solana Mainnet Explorer"><img alt="Solana Mainnet" src="/packs/media/icon/sol-f3ebedae.svg" style="width: 32px; height: auto"/></a>
+<a href="/medalla" title="Medalla Eth 2.0 Testnet Explorer"><img alt="Medalla Eth 2.0 Testnet" src="/packs/media/icon/eth-093b3f87.svg" style="width: 32px; height: auto"/></a>
+<a href="/eth2" title="Beacon Chain Ethereum 2.0 Explorer"><img alt="Beacon Chain Ethereum 2.0" src="/packs/media/icon/eth-093b3f87.svg" style="width: 32px; height: auto"/></a>
+<a href="/filecoin" title="Filecoin Mainnet Explorer"><img alt="Filecoin Mainnet" src="/assets/currency/fil-18d054ea0e59ae2ae6cdab1fa16f54b69f1c2a51c4bd6c7fb00540af7278a7ca.svg" style="width: 32px; height: auto"/></a>
+<a href="/matic" title="Matic (Polygon) Mainnet Explorer"><img alt="Matic (Polygon) Mainnet" src="/packs/media/icon/matic-705ec800.svg" style="width: 32px; height: auto"/></a>
+<a href="/velas" title="Velas Mainnet Explorer"><img alt="Velas Mainnet" src="/assets/currency/velas-fb806b351cc27e60c07b605cfbdc7f39971a3ba53e01f4a0f51b0eb7412ead68.png" style="width: 32px; height: auto"/></a>
+<a href="/velas_testnet" title="Velas Testnet Explorer"><img alt="Velas Testnet" src="/assets/currency/velas-fb806b351cc27e60c07b605cfbdc7f39971a3ba53e01f4a0f51b0eb7412ead68.png" style="width: 32px; height: auto"/></a>
+<a href="/klaytn" title="Klaytn Mainnet Explorer"><img alt="Klaytn Mainnet" src="/assets/currency/klaytn-f0de906314e85bd8059fb8b0d169e2e3ecdd47f8a3941a178ecadd0f12a9d173.png" style="width: 32px; height: auto"/></a>
+<a href="/elrond" title="The MultiversX (Elrond) Mainnet Explorer"><img alt="The MultiversX (Elrond) Mainnet" src="/assets/currency/egld-token-logo-699343cb5cf74299f502653cf1c59ee929d6fb03d2c3d1d1fbd8df15d6a24c18.svg" style="width: 32px; height: auto"/></a>
+<a href="/avalanche" title="Avalanche  C-chain Explorer"><img alt="Avalanche  C-chain" src="/assets/currency/avalanche-241c2835bc1ceb584fb4e4db14873b5532316a45394c4c67c6395b571feb83ec.png" style="width: 32px; height: auto"/></a>
+<a href="/fantom" title="Fantom Mainnet Explorer"><img alt="Fantom Mainnet" src="/assets/currency/fantom-0b37060b2b66b5fa2845cae4fdbaf2b5a48aa1e1e9b5e924e59c82119165f948.png" style="width: 32px; height: auto"/></a>
+<a href="/moonbeam" title="Moonbeam Mainnet Explorer"><img alt="Moonbeam Mainnet" src="/assets/currency/moonbeam-5c7d520a2f32b41d1eea8ddd955744273543ad684b8163df8e7d8c926d384dbb.png" style="width: 32px; height: auto"/></a>
+<a href="/cronos" title="Cronos Mainnet Explorer"><img alt="Cronos Mainnet" src="/assets/currency/cronos-8a8461278219d3173c84da9d7ef93b7c050a58462e917fe4e002bf83d9b39526.png" style="width: 32px; height: auto"/></a>
+<a href="/cosmoshub" title="Cosmos Hub Network Explorer"><img alt="Cosmos Hub Network" src="/assets/currency/cosmos-atom-logo-b04d6e8ba8c5afa4373b6f1deefbd4be90c605c83e8df105e04a1d136beeee86.svg" style="width: 32px; height: auto"/></a>
+<a href="/crypto_mainnet" title="Crypto.org Mainnet Explorer"><img alt="Crypto.org Mainnet" src="/assets/currency/cryptoorg-logo-f37f576879663ff9654e3f13cc85ad14e677928b188562a347f14893731c2811.png" style="width: 32px; height: auto"/></a>
+<a href="/crypto_testnet" title="Crypto.org Croeseid Testnet Explorer"><img alt="Crypto.org Croeseid Testnet" src="/assets/currency/cryptoorg-logo-f37f576879663ff9654e3f13cc85ad14e677928b188562a347f14893731c2811.png" style="width: 32px; height: auto"/></a>
+<a href="/heimdall" title="Heimdall (Matic Verification Network) Explorer"><img alt="Heimdall (Matic Verification Network)" src="/assets/currency/matic-logo-e814200f3a56319e20cac6107987be39ff9f1ece4b2440d7c8ed73ceb0f1b85b.png" style="width: 32px; height: auto"/></a>
+<a href="/terra" title="Terra Explorer"><img alt="Terra" src="/assets/currency/terra-luna-logo-21c28f321deebe6dab471924da51ce04fd444cbe9664fd6a5e7e88580ecb6870.svg" style="width: 32px; height: auto"/></a>
+<a href="/flow" title="Flow Mainnet Explorer"><img alt="Flow Mainnet" src="/assets/currency/flow-73a91b57809553324b3eb6b94a6431be1758bc6424802416e9fa750016e19056.png" style="width: 32px; height: auto"/></a>
+<a href="/stellar" title="Stellar Ledger Explorer"><img alt="Stellar Ledger" src="/assets/currency/stellar-xlm-logo-4ad29279fb4c77d24e0fcbfe1386c708ddb4c16cad83e2cc87226c64fc6db063.svg" style="width: 32px; height: auto"/></a>
+<a href="/ripple" title="Ripple XRP Ledger Explorer"><img alt="Ripple XRP Ledger" src="/assets/currency/ripple-logo-5da2701bf85b178f84dc2f94c717e47805f923d1a34deb2b5311890436a03fca.svg" style="width: 32px; height: auto"/></a>
+<a href="/tezos" title="Tezos Explorer"><img alt="Tezos" src="/assets/currency/tezos-xtz-logo-8db42502bf6e1848996b94fcafdc6ab1281f97e8a7b2db46545a503c029e3901.svg" style="width: 32px; height: auto"/></a>
+<a href="/everscale" title="Everscale Explorer"><img alt="Everscale" src="/assets/currency/everscale-logo-606d44998e5a898e80813ee47230ec6a7198072aee7b2922b6cc895b70321b26.png" style="width: 32px; height: auto"/></a>
+</div>
+
+    Built with
+    <a href="https://github.com/bitquery/widgets">Widgets</a>
+<i class="fab fa-github"></i>
+
+    by
+    <a href="https://bitquery.io">Bitquery.io</a><br/>
+<span style="font-size: 80%;">
+    Check our Blockchain GraphQL APIs by clicking on the “Open GraphQL IDE“ button!</span>
+<p>
+<i class="fa fa-briefcase"></i> <a href="https://angel.co/company/bitquery/jobs" target="_blank">We are hiring</a>
+      |
+      <i class="fas fa-ad"></i> <a href="https://bitquery.io/go/media-kit" target="_blank">Media kit</a>
+      |
+      <i class="fa fa-info-circle"></i> <a href="https://coincodecap.com/?utm_source=bitquery" target="_blank">Crypto News</a> Partner
+      |
+      <img src="/assets/discord-logo-2a4968effa5fdfc293922aad7c88d971695f1e4d7ec085034315ff1ae785c0ed.svg" style="margin-top: -4px" width="16"/> <a href="https://discord.gg/EEBVTQnb2E" target="_blank">Out Discord</a>
+</p>
+</div>
+<div class="card shadow ad-fixed" style="position: fixed; left: 10px; bottom: 10px; z-index: 10000; width: 28rem; background-color: #ffffffdd">
+<script>
+        var adFixed = document.cookie.match('adFixed=(.+?)(;|$)');
+        if (adFixed && adFixed[1] === 'hide'){
+            $('.ad-fixed').addClass('d-none');
+        }
+    </script>
+<a href="https://jn3rg.app.link/Bitquery_1inch_FixedBanner" style="text-decoration: none" target="_blank">
+<div class="card-body">
+<div class="row">
+<div class="col-7 position-relative">
+<h5 class="card-title" style="color: #000000">Swap at the best rates!</h5>
+<p class="card-text" style="color: #000000">Gasless execution and MEV protection on 1inch - #1 DEX aggregator.</p>
+<a class="btn btn-primary position-absolute" href="https://jn3rg.app.link/Bitquery_1inch_FixedBanner" style="bottom: 0; background-color: ;color: ">Swap now!</a>
+</div>
+<div class="col-5 text-right">
+<a href="https://jn3rg.app.link/Bitquery_1inch_FixedBanner" style="text-decoration: none" target="_blank">
+<img class="img-fluid rounded" src="/assets/1inch-8ccd620ddd91c4e1aee4a6f427eab274d6568e1bf9bc7d418d1a9f0e1b86141d.jpg"/>
+</a>
+</div>
+</div>
+</div>
+</a>
+<div class="position-absolute ad-close" style="top: 0; right: 5px; cursor: pointer"><i class="fa fa-times text-secondary"></i></div>
+<div class="position-absolute" style="bottom: -1px; right: 5px">
+<small class="text-secondary"><i class="fas fa-ad"></i></small>
+</div>
+</div>
+<script>
+      $('body').on('click','.ad-fixed .ad-close', function (){
+          $('.ad-fixed').addClass('d-none');
+          document.cookie = "adFixed=hide; path=/";
+      })
+  </script>
+</footer>
+</div>
+</body>
