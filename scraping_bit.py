@@ -17,15 +17,24 @@ else:
     print('Erro na solicitação:', response.status_code)
 """
 from webdriver_manager.chrome import ChromeDriverManager
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.by import By
+
 from selenium import webdriver
 
 driver_service = webdriver.chrome.service.Service(ChromeDriverManager().install())
 driver_service.start()
 driver = webdriver.Chrome(service=driver_service)
 # Carregar a página
-driver.get('https://explorer.bitquery.io/bsc/')
+driver.get('https://explorer.bitquery.io/bsc/tokens?from=2023-05-21&till=2023-05-21')
 
-script_content = driver.execute_script('return document.querySelector("script").textContent')
+# Localizar a tabela e extrair o conteúdo da tbody
+table_element = driver.find_element(By.XPATH, '//div[@class="table-responsive"]//table')
+tbody_element = table_element.find_element(By.TAG_NAME, 'tbody')
+tbody_html = tbody_element.get_attribute('innerHTML')
 
-print(script_content)
+
+# Imprimir o conteúdo da tbody
+print(tbody_html)
+
 driver.quit()
