@@ -21,12 +21,17 @@ from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.common.by import By
 
 from selenium import webdriver
+from datetime import date
+
+today = date.today()
+date_string = today.strftime("%Y-%m-%d")
 
 driver_service = webdriver.chrome.service.Service(ChromeDriverManager().install())
 driver_service.start()
 driver = webdriver.Chrome(service=driver_service)
 # Carregar a página
-driver.get('https://explorer.bitquery.io/bsc/tokens?from=2023-05-21&till=2023-05-21')
+url = f"https://explorer.bitquery.io/bsc/tokens?from={date_string}&till={date_string}"
+driver.get(url)
 
 # Localizar a tabela e extrair o conteúdo da tbody
 table_element = driver.find_element(By.XPATH, '//div[@class="table-responsive"]//table')
