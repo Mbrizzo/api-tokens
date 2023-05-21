@@ -22,8 +22,26 @@ driver.quit()
 
 soup = BeautifulSoup(html_content, 'html.parser')
 
-table_element = soup.find('div', class_='table-responsive').find('table')
-tbody_element = table_element.find('tbody')
+rows = soup.find_all('tr')
 
-with open('tbody.txt', 'wb') as file:
-        file.write(tbody_element.encode('utf-8'))
+for row in rows:
+
+    name_element = row.find('a', href=True)
+    name = getattr(name_element, 'text', '').strip()
+
+    
+    address_element = row.find_all('a', href=True)
+    if len(address_element) > 0:
+        address = address_element[-1]['href'].split('/')[-1]
+    else:
+        address = ''
+
+    with open('name_and_address.txt', 'a') as file:
+        file.write(f"Nome do Token: {name}\n")
+        file.write(f"Endereço do Contrato: {address}\n")
+        file.write("---\n")
+
+    
+    print('Nome do Token:', name)
+    print('Endereço do Contrato:', address)
+    print('---')

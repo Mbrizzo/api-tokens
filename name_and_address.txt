@@ -1,0 +1,33 @@
+Nome do Token: 
+Endereço do Contrato: 
+---
+Nome do Token: BNB
+Endereço do Contrato: BNB
+---
+Nome do Token: USDT
+Endereço do Contrato: 0x55d398326f99059ff775485246999027b3197955
+---
+Nome do Token: WBNB
+Endereço do Contrato: 0xbb4cdb9cbd36b01bd1cbaebf2de08d9173bc095c
+---
+Nome do Token: bXEN
+Endereço do Contrato: 0x2ab0e9e4ee70fff1fb9d67031e44f6410170d00e
+---
+Nome do Token: BUSD
+Endereço do Contrato: 0xe9e7cea3dedca5984780bafc599bd69add087d56
+---
+Nome do Token: BSC-USD
+Endereço do Contrato: 0x834804781db078eef71ecf24208cc42f583debe5
+---
+Nome do Token: KOGE
+Endereço do Contrato: 0xe6df05ce8c8301223373cf5b969afcb1498c5528
+---
+Nome do Token: Visit https://bpepe.org to claim rewards.
+Endereço do Contrato: 0x157a39b3d8ceaf0d1ed293f7b7b0c3a76a3ce14e
+---
+Nome do Token: USDT
+Endereço do Contrato: 0x41dfd04a0de149b0c5d234cea8ed4430556163e8
+---
+Nome do Token: FIFA
+Endereço do Contrato: 0xe19417837d8e61f17dfae2e6a11b1e4810dae2a5
+---
