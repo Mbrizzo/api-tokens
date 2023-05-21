@@ -25,4 +25,5 @@ soup = BeautifulSoup(html_content, 'html.parser')
 table_element = soup.find('div', class_='table-responsive').find('table')
 tbody_element = table_element.find('tbody')
 
-print(tbody_element)
+with open('tbody.txt', 'wb') as file:
+        file.write(tbody_element.encode('utf-8'))
