@@ -3,5 +3,6 @@
 /lib
 /scripts
 /sniper
+/Advanced AI-powered token analytics
 pyvenv.cfg
 .env
