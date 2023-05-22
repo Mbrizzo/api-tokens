@@ -2,6 +2,6 @@
 /include
 /lib
 /scripts
+/sniper
 pyvenv.cfg
 .env
-sniper.py

@@ -49,7 +49,7 @@ for row in rows:
         address = address_element[-1]['href'].split('/')[-1]
         contracts.append(address)
 
-        with open('name_and_address.txt', 'a') as file:
+        with open('./name_and_address.txt', 'a') as file:
             file.write(f"Nome do Token: {name}\n")
             file.write(f"Endereço do Contrato: {address}\n")
             file.write("---\n")
