@@ -45,3 +45,13 @@ for row in rows:
     print('Nome do Token:', name)
     print('Endereço do Contrato:', address)
     print('---')
+
+def honeyPot(address):
+    pass
+    if address == '<ENDEREÇO_HONEYPOT>':
+        return True
+    else:
+        return False
+
+honeypot = honeyPot(address)
+print(honeypot)
