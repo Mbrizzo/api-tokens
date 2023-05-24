@@ -1,21 +1,27 @@
 from web3 import Web3
+import requests
 import sys
+
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+bsc_api_key = os.getenv('api_key')
 
 web3 = Web3(Web3.HTTPProvider('https://bsc-dataseed.binance.org/'))
 
 contract_address = ''
 
 def get_contract_abi(contract_address):
-    bytecode = web3.eth.getCode(contract_address)
-    if bytecode == '0x':
-        return None
-    transaction = {'to': contract_address, 'data': '0x'}
-    try:
-        call = web3.eth.call(transaction)
-        abi = web3.eth.contract(abi=call).abi
-        return abi
-    except:
-        return None
+    url = f'https://api.bscscan.com/api?module=contract&action=getabi&address={contract_address}&apikey={bsc_api_key}'
+
+    response = requests.get(url)
+    if response.status_code == 200:
+        result = response.json()
+        if result['status'] == '1':
+            abi = result['result']
+            return abi
+    return None
 
 contract_abi = get_contract_abi(contract_address)
 
